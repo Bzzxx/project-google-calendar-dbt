@@ -1,0 +1,48 @@
+version: 2
+
+models:
+  - name: calendar_events_summary
+    description: "Агрегація по кожній події з кількістю учасників та розбиттям по статусах"
+    columns:
+      - name: EVENT_ID
+        description: "Унікальний ідентифікатор події"
+        tests:
+          - not_null
+          - unique
+      - name: EVENT_TITLE
+        description: "Назва події"
+      - name: EVENT_START_AT
+        description: "Дата і час початку події"
+        tests:
+          - not_null
+      - name: total_attendees
+        description: "Загальна кількість унікальних учасників події"
+
+  - name: attendees_status_summary
+    description: "Статистика по кожному учаснику: скільки подій, у яких статусах брав участь"
+    columns:
+      - name: ATTENDEE_EMAIL
+        description: "E-mail учасника"
+        tests:
+          - not_null
+          - unique
+      - name: events_total
+        description: "Скільки різних подій відвідав цей учасник"
+      - name: events_accepted
+        description: "Скільки подій учасник прийняв"
+      - name: events_declined
+        description: "Скільки подій учасник відхилив"
+
+  - name: events_activity_over_time
+    description: "Активність по днях і тижнях: кількість подій і унікальних учасників"
+    columns:
+      - name: activity_day
+        description: "День, до якого відноситься активність"
+        tests:
+          - not_null
+      - name: week_start
+        description: "Початок тижня, до якого належить цей день"
+      - name: events_per_day
+        description: "Кількість подій за день"
+      - name: attendees_per_day
+        description: "Кількість унікальних учасників за день"

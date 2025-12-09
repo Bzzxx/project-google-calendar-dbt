@@ -1,0 +1,13 @@
+# Python venv
+env/
+env311/
+
+# dbt артефакти
+target/
+dbt_packages/
+logs/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store

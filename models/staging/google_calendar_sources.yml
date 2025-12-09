@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: google_calendar
+    database: FIV_GOOGLECALENDAR_DB
+    schema: GOOGLE_CALENDAR
+    tables:
+      - name: EVENT
+      - name: ATTENDEE
+      - name: CALENDAR_LIST
