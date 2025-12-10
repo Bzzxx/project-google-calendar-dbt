@@ -6,6 +6,25 @@ for reporting, automation, and trend analysis.
 
 ---
 
+## 🖼 Architecture Overview
+
+<p align="center">
+  <img src="docs/images/calendar_dbt_architecture.png" 
+       alt="Google Calendar → Snowflake → dbt → GitHub Actions → Power BI architecture"
+       width="85%">
+</p>
+
+This diagram shows the full analytics pipeline:
+
+- **Google Calendar** — source of events and attendees  
+- (optionally) **Fivetran / ingestion layer** — automated data loading into Snowflake  
+- **Snowflake** — cloud data warehouse (raw + staging + analytics schemas)  
+- **dbt Core** — transformations (staging → intermediate → marts), tests, documentation  
+- **GitHub Actions** — CI/CD orchestration for scheduled dbt runs  
+- **Power BI** — consuming marts as a BI / reporting layer
+
+---
+
 ## 🌟 Project Overview
 
 This project demonstrates a **production-ready data transformation workflow**, including:
