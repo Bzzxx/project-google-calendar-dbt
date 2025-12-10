@@ -1,82 +1,250 @@
-Google Calendar ELT Pipeline (Fivetran → Snowflake → dbt → GitHub Actions)
+📅 Google Calendar ETL Pipeline (dbt + Snowflake)
 
-This project is a compact, production-style ELT pipeline built as a Data Engineering portfolio piece.
-It demonstrates automated data ingestion, transformation, testing and CI/CD using modern cloud tools.
+A complete end-to-end data transformation pipeline built using dbt, Snowflake, and GitHub Actions.
+This project extracts raw Google Calendar events and attendees, cleans and models them through a multi-layered dbt architecture, and produces analytical marts for reporting and automation.
 
-🔧 Tech Stack
+📘 Table of Contents
 
-Fivetran – automated ingestion of Google Calendar data
-Snowflake – cloud data warehouse (raw + analytics schemas)
-dbt Core – transformations, tests, documentation
-GitHub Actions – automated daily dbt build (CI/CD)
+🚀 Project Overview
 
-🚀 What the Pipeline Does
+💾 Dataset
 
-Replicates Google Calendar events + attendees via Fivetran
+🧠 Modeling Approach
 
-Stores raw data in Snowflake
+Staging Models
 
-Cleans and models data into:
+Intermediate Models
 
-staging layer (raw → standardized)
+Analytics Marts
 
-intermediate layer (events + attendees join)
+📊 Example Outputs
 
-marts (analytics tables)
+⚙️ Tech Stack
 
-Runs tests + builds models automatically via GitHub Actions
+📂 Repository Structure
 
-🧱 Data Models (dbt)
+🔄 Automation (CI/CD)
 
-Staging:
+🧪 Data Tests
 
-stg_events
+📈 Future Improvements
 
-stg_attendee
+✔️ Status
 
-Intermediate:
+🚀 Project Overview
 
-int_events_with_attendees – enriched event records with attendee-level detail
+This project demonstrates a production-ready data transformation workflow using:
 
-Marts:
+dbt for SQL modeling and testing
 
-calendar_events_summary – event metrics (attendee counts, statuses)
+Snowflake as the cloud data warehouse
 
-attendees_status_summary – user-level activity statistics
+GitHub Actions for automated nightly builds
 
-events_activity_over_time – daily/weekly event participation trends
+Google Calendar API as the raw data source
 
-All marts include dbt tests (not_null, unique) and documentation.
+The pipeline transforms raw event & attendee data into insights such as:
 
-⚙️ CI/CD (GitHub Actions)
+Daily/weekly event counts
 
-Automated workflow runs:
+Number of attendees per event
 
-pip install dbt-core dbt-snowflake
+Participation trends over time
 
-generates profiles.yml from GitHub Secrets
+Status distribution of users
 
-executes dbt build on schedule or manual trigger
+This is structured and documented following modern data engineering best practices.
 
-This mimics a production-grade orchestration setup.
+💾 Dataset
 
-📈 What This Project Demonstrates
+The project uses exported data from the Google Calendar API.
 
-✔ End-to-end ELT pipeline
+Source Tables (raw → staging)
+STG_EVENTS
 
-✔ Working dbt DAG (staging → intermediate → marts)
+Contains raw event metadata such as:
 
-✔ Data quality tests
+title
 
-✔ Automated builds via GitHub Actions
+description
 
-✔ Clean, modular SQL transformations
+start/end times
 
-✔ Cloud-native stack used by modern Data Engineering teams
+calendar ID
 
+STG_ATTENDEE
 
-📌 Status
+Contains attendee information:
 
-Fully functional and automated.
-A clear example of a real-world analytical pipeline using modern DE tooling.
+attendee email
 
+status
+
+organizer flag
+
+optional/required indicator
+
+🧠 Modeling Approach
+
+The dbt project follows the classic three-layer architecture:
+
+staging  →  intermediate  →  marts
+
+Staging Models
+
+Purpose:
+
+Standardize field naming
+
+Perform type casting
+
+Clean null or inconsistent values
+
+Prepare reliable inputs for transformations
+
+Models:
+
+stg_events.sql
+
+stg_attendee.sql
+
+Intermediate Models
+int_events_with_attendees.sql
+
+Joins events with attendees
+
+Produces one row per attendee per event
+
+Ensures referential consistency between both sources
+
+Analytics Marts
+calendar_events_summary.sql
+
+Aggregates:
+
+Events per calendar
+
+Count by status
+
+Basic metadata rollups
+
+attendees_status_summary.sql
+
+Aggregates per user:
+
+Accepted
+
+Declined
+
+Tentative
+
+Total participation
+
+events_activity_over_time.sql
+
+Time-series mart containing:
+
+Daily and weekly event counts
+
+Attendances per event
+
+Multi-year trends (past years + current)
+
+📊 Example Outputs
+Event Activity Over Time
+event_start_date	total_events	total_attendees
+2025-01-01	2	5
+2025-01-02	1	2
+Attendee Status Distribution
+attendee_email	accepted	declined	tentative
+user@gmail.com
+	12	1	0
+⚙️ Tech Stack
+
+Snowflake — cloud data warehouse
+
+dbt Core — SQL modeling, macros, lineage, testing
+
+GitHub Actions — fully automated CI/CD
+
+Google Calendar API — source system
+
+Python 3.11 — environment for dbt execution
+
+📂 Repository Structure
+google_calendar_project/
+│
+├── models/
+│   ├── staging/
+│   │   ├── stg_events.sql
+│   │   ├── stg_attendee.sql
+│   │
+│   ├── intermediate/
+│   │   └── int_events_with_attendees.sql
+│   │
+│   ├── marts/
+│       ├── calendar_events_summary.sql
+│       ├── attendees_status_summary.sql
+│       ├── events_activity_over_time.sql
+│       └── schema.yml
+│
+├── snapshots/
+├── tests/
+├── logs/
+├── dbt_project.yml
+│
+└── .github/workflows/
+    └── dbt_prod.yaml
+
+🔄 Automation (CI/CD)
+
+GitHub Actions pipeline runs:
+
+manually on demand
+
+automatically once per day (04:00 UTC)
+
+Workflow steps:
+
+Install dbt
+
+Generate profiles.yml dynamically using GitHub Secrets
+
+Run dbt deps
+
+Run dbt build (models + tests)
+
+Deploy results to Snowflake
+
+This ensures the project remains always up-to-date, production-ready, and continuously validated.
+
+🧪 Data Tests
+
+Built-in dbt tests used:
+
+not_null
+
+unique
+
+relationships
+
+custom grain tests
+
+Test definitions are located in schema.yml inside the marts folder.
+
+📈 Future Improvements
+
+Potential enhancements:
+
+Incremental models for large event histories
+
+dbt snapshots for tracking attendee status changes
+
+BI dashboards (Tableau / Power BI)
+
+Alerts for anomalies in event activity
+
+✔️ Status
+
+🟢 Fully operational and deployed
+Snowflake environment + CI/CD + dbt modeling all functioning as expected.
