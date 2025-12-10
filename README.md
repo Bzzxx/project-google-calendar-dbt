@@ -72,7 +72,7 @@ google_calendar_project/
 ```
 ## ⚙️ CI/CD Overview
 
-```yaml
+```
 cicd_overview:
   description: >
     Automated GitHub Actions pipeline for running dbt transformations
