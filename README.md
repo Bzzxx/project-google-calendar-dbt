@@ -6,20 +6,6 @@ This project extracts raw Google Calendar events & attendees, cleans and models 
 
 ---
 
-## 📘 Table of Contents
-- [🚀 Project Overview](#-project-overview)
-- [💾 Dataset](#-dataset)
-- [🧠 Modeling Approach](#-modeling-approach)
-- [📊 Example Outputs](#-example-outputs)
-- [⚙️ Tech Stack](#️-tech-stack)
-- [📂 Repository Structure](#-repository-structure)
-- [🔄 Automation (CI--CD)](#-automation-cicd)
-- [🧪 Data Tests](#-data-tests)
-- [📈 Future Improvements](#-future-improvements)
-- [✔️ Status](#-status)
-
----
-
 ## 🚀 Project Overview
 
 This project demonstrates a **modern data engineering workflow**:
