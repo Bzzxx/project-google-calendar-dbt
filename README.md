@@ -175,8 +175,8 @@ google_calendar_project/
 └── .github/workflows/
     └── dbt_prod.yaml
 ```
-cicd_overview:
-  description: >
+## 📦 CI/CD Overview (GitHub Actions)
+description: >
     Automated GitHub Actions pipeline for running dbt transformations
     and ensuring daily data freshness in Snowflake.
   schedule:
