@@ -51,13 +51,13 @@ The project uses exported data from the **Google Calendar API**, loaded into Sno
 
 ### **Source tables (raw → staging):**
 
-#### `STG_EVENTS`
+- `STG_EVENTS`
 Contains event metadata such as title, start/end timestamps, description, event status, and calendar ID.
 
-#### `STG_ATTENDEE`
+- `STG_ATTENDEE`
 Contains attendee-level data: email, status, organizer flag, optional flags, etc.
 
-#### `STG_CALENDAR_LIST`
+- `STG_CALENDAR_LIST`
 Contains metadata about user's calendars (name, color, visibility).
 
 ---
