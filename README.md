@@ -1,177 +1,165 @@
-📅 Google Calendar ETL Pipeline (dbt + Snowflake)
+# 📅 Google Calendar ETL Pipeline (dbt + Snowflake)
 
-A complete end-to-end data transformation pipeline built using dbt, Snowflake, and GitHub Actions.
-This project extracts raw Google Calendar events and attendees, cleans and models them through a multi-layered dbt architecture, and produces analytical marts for reporting and automation.
+A production-ready data transformation pipeline built using **dbt**, **Snowflake**, and **GitHub Actions**.
 
-📘 Table of Contents
+This project extracts raw Google Calendar events & attendees, cleans and models them through a multi-layer dbt architecture, and produces analytical marts for reporting & automation.
 
-🚀 Project Overview
+---
 
-💾 Dataset
+## 📘 Table of Contents
+- [🚀 Project Overview](#-project-overview)
+- [💾 Dataset](#-dataset)
+- [🧠 Modeling Approach](#-modeling-approach)
+- [📊 Example Outputs](#-example-outputs)
+- [⚙️ Tech Stack](#️-tech-stack)
+- [📂 Repository Structure](#-repository-structure)
+- [🔄 Automation (CI--CD)](#-automation-cicd)
+- [🧪 Data Tests](#-data-tests)
+- [📈 Future Improvements](#-future-improvements)
+- [✔️ Status](#-status)
 
-🧠 Modeling Approach
+---
 
-Staging Models
+## 🚀 Project Overview
 
-Intermediate Models
+This project demonstrates a **modern data engineering workflow**:
 
-Analytics Marts
+- dbt for SQL modeling, testing, and lineage  
+- Snowflake as the cloud data warehouse  
+- GitHub Actions for automated nightly builds  
+- Google Calendar API as the raw event data source  
 
-📊 Example Outputs
+The pipeline turns raw event & attendee records into insights such as:
 
-⚙️ Tech Stack
+- Daily and weekly event counts  
+- Number of attendees per event  
+- Participation trends  
+- Attendance status distribution  
 
-📂 Repository Structure
+---
 
-🔄 Automation (CI/CD)
+## 💾 Dataset
 
-🧪 Data Tests
+Data originates from the **Google Calendar API export**.
 
-📈 Future Improvements
+### Source Tables
 
-✔️ Status
+<details>
+<summary><strong>📄 STG_EVENTS</strong></summary>
 
-🚀 Project Overview
+Contains raw event metadata:
 
-This project demonstrates a production-ready data transformation workflow using:
+- event title  
+- description  
+- start/end times  
+- calendar ID  
+</details>
 
-dbt for SQL modeling and testing
+<details>
+<summary><strong>📄 STG_ATTENDEE</strong></summary>
 
-Snowflake as the cloud data warehouse
+Contains attendee-level details:
 
-GitHub Actions for automated nightly builds
+- attendee email  
+- acceptance status  
+- organizer flag  
+- optional/required indicator  
+</details>
 
-Google Calendar API as the raw data source
+---
 
-The pipeline transforms raw event & attendee data into insights such as:
+## 🧠 Modeling Approach
 
-Daily/weekly event counts
+The project follows the classic **three-layer dbt architecture**:
 
-Number of attendees per event
 
-Participation trends over time
-
-Status distribution of users
-
-This is structured and documented following modern data engineering best practices.
-
-💾 Dataset
-
-The project uses exported data from the Google Calendar API.
-
-Source Tables (raw → staging)
-STG_EVENTS
-
-Contains raw event metadata such as:
-
-title
-
-description
-
-start/end times
-
-calendar ID
-
-STG_ATTENDEE
-
-Contains attendee information:
-
-attendee email
-
-status
-
-organizer flag
-
-optional/required indicator
-
-🧠 Modeling Approach
-
-The dbt project follows the classic three-layer architecture:
-
-staging  →  intermediate  →  marts
-
-Staging Models
-
+### 📌 Staging Models (`/models/staging`)
 Purpose:
-
-Standardize field naming
-
-Perform type casting
-
-Clean null or inconsistent values
-
-Prepare reliable inputs for transformations
+- Standardize field names  
+- Cast types  
+- Clean inconsistent values  
+- Prepare reliable structured inputs  
 
 Models:
+- `stg_events.sql`  
+- `stg_attendee.sql`  
 
-stg_events.sql
+---
 
-stg_attendee.sql
+### 📌 Intermediate Models (`/models/intermediate`)
 
-Intermediate Models
-int_events_with_attendees.sql
+<details>
+<summary><strong>🔗 int_events_with_attendees.sql</strong></summary>
 
-Joins events with attendees
+Joins events with attendees and produces:
 
-Produces one row per attendee per event
+- one row per attendee per event  
+- consistent grain across dataset  
+- relationships validated through dbt tests  
+</details>
 
-Ensures referential consistency between both sources
+---
 
-Analytics Marts
-calendar_events_summary.sql
+### 📌 Analytics Marts (`/models/marts`)
 
-Aggregates:
+<details>
+<summary><strong>📊 calendar_events_summary.sql</strong></summary>
+Aggregates metadata per calendar:
 
-Events per calendar
+- event counts  
+- distribution by event type or status  
+</details>
 
-Count by status
+<details>
+<summary><strong>📊 attendees_status_summary.sql</strong></summary>
+Aggregates per attendee:
 
-Basic metadata rollups
+- accepted  
+- declined  
+- tentative  
+- total events  
+</details>
 
-attendees_status_summary.sql
+<details>
+<summary><strong>📈 events_activity_over_time.sql</strong></summary>
 
-Aggregates per user:
+Time-series facts:
 
-Accepted
+- daily event counts  
+- weekly trends  
+- attendee volume  
+- multi-year comparison  
+</details>
 
-Declined
+---
 
-Tentative
+## 📊 Example Outputs
 
-Total participation
+### Event Activity Over Time
+| event_start_date | total_events | total_attendees |
+|------------------|--------------|-----------------|
+| 2025-01-01        | 2            | 5               |
+| 2025-01-02        | 1            | 2               |
 
-events_activity_over_time.sql
+### Attendee Status Summary
+| attendee_email | accepted | declined | tentative |
+|----------------|----------|----------|-----------|
+| user@gmail.com | 12       | 1        | 0         |
 
-Time-series mart containing:
+---
 
-Daily and weekly event counts
+## ⚙️ Tech Stack
 
-Attendances per event
+- **Snowflake** — cloud data warehouse  
+- **dbt Core** — transformations, documentation, testing  
+- **GitHub Actions** — CI/CD automation  
+- **Google Calendar API** — raw data source  
+- **Python 3.11** — dbt runtime  
 
-Multi-year trends (past years + current)
+---
 
-📊 Example Outputs
-Event Activity Over Time
-event_start_date	total_events	total_attendees
-2025-01-01	2	5
-2025-01-02	1	2
-Attendee Status Distribution
-attendee_email	accepted	declined	tentative
-user@gmail.com
-	12	1	0
-⚙️ Tech Stack
+## 📂 Repository Structure
 
-Snowflake — cloud data warehouse
-
-dbt Core — SQL modeling, macros, lineage, testing
-
-GitHub Actions — fully automated CI/CD
-
-Google Calendar API — source system
-
-Python 3.11 — environment for dbt execution
-
-📂 Repository Structure
 google_calendar_project/
 │
 ├── models/
@@ -195,56 +183,3 @@ google_calendar_project/
 │
 └── .github/workflows/
     └── dbt_prod.yaml
-
-🔄 Automation (CI/CD)
-
-GitHub Actions pipeline runs:
-
-manually on demand
-
-automatically once per day (04:00 UTC)
-
-Workflow steps:
-
-Install dbt
-
-Generate profiles.yml dynamically using GitHub Secrets
-
-Run dbt deps
-
-Run dbt build (models + tests)
-
-Deploy results to Snowflake
-
-This ensures the project remains always up-to-date, production-ready, and continuously validated.
-
-🧪 Data Tests
-
-Built-in dbt tests used:
-
-not_null
-
-unique
-
-relationships
-
-custom grain tests
-
-Test definitions are located in schema.yml inside the marts folder.
-
-📈 Future Improvements
-
-Potential enhancements:
-
-Incremental models for large event histories
-
-dbt snapshots for tracking attendee status changes
-
-BI dashboards (Tableau / Power BI)
-
-Alerts for anomalies in event activity
-
-✔️ Status
-
-🟢 Fully operational and deployed
-Snowflake environment + CI/CD + dbt modeling all functioning as expected.
