@@ -63,11 +63,17 @@ This mimics a production-grade orchestration setup.
 📈 What This Project Demonstrates
 
 ✔ End-to-end ELT pipeline
+
 ✔ Working dbt DAG (staging → intermediate → marts)
+
 ✔ Data quality tests
+
 ✔ Automated builds via GitHub Actions
+
 ✔ Clean, modular SQL transformations
+
 ✔ Cloud-native stack used by modern Data Engineering teams
+
 
 📌 Status
 
