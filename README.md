@@ -146,6 +146,7 @@ Time-series facts:
 
 ## 📂 Repository Structure
 
+```text
 google_calendar_project/
 │
 ├── models/
@@ -169,3 +170,8 @@ google_calendar_project/
 │
 └── .github/workflows/
     └── dbt_prod.yaml
+
+│
+└── .github/workflows/
+    └── dbt_prod.yaml
+```
