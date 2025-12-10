@@ -3,20 +3,20 @@ name: dbt prod build
 on:
   workflow_dispatch:    # запуск руками з вкладки Actions
   schedule:
-    - cron: "0 4 * * *"   # опційно: щодня о 04:00 UTC (можеш потім змінити або прибрати)
+    - cron: "0 4 * * *"   # опційно: щодня о 04:00 UTC
 
 jobs:
   dbt-build:
     runs-on: ubuntu-latest
 
     env:
-      SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
-      SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
-      SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
-      SNOWFLAKE_ROLE: ${{ secrets.SNOWFLAKE_ROLE }}
-      SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
-      SNOWFLAKE_DATABASE: ${{ secrets.SNOWFLAKE_DATABASE }}
-      SNOWFLAKE_SCHEMA: ${{ secrets.SNOWFLAKE_SCHEMA }}
+      SNOWFLAKE_ACCOUNT:  ${{ fromJson(secrets.PET_PROJECT_SECRETS).SNOWFLAKE_ACCOUNT }}
+      SNOWFLAKE_USER:     ${{ fromJson(secrets.PET_PROJECT_SECRETS).SNOWFLAKE_USER }}
+      SNOWFLAKE_PASSWORD: ${{ fromJson(secrets.PET_PROJECT_SECRETS).SNOWFLAKE_PASSWORD }}
+      SNOWFLAKE_ROLE:     ${{ fromJson(secrets.PET_PROJECT_SECRETS).SNOWFLAKE_ROLE }}
+      SNOWFLAKE_WAREHOUSE: ${{ fromJson(secrets.PET_PROJECT_SECRETS).SNOWFLAKE_WAREHOUSE }}
+      SNOWFLAKE_DATABASE: ${{ fromJson(secrets.PET_PROJECT_SECRETS).SNOWFLAKE_DATABASE }}
+      SNOWFLAKE_SCHEMA:   ${{ fromJson(secrets.PET_PROJECT_SECRETS).SNOWFLAKE_SCHEMA }}
 
     steps:
       - name: Checkout repo
