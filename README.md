@@ -122,12 +122,12 @@ automation for the analytics workflow.
 The project uses **dbt native tests** and **custom logic** to ensure data consistency across staging,
 intermediate layers, and marts.
 
-## ✅ Built-in Tests
+## Built-in Tests
 - `not_null`
 - `unique`
 - `relationships`
 
-## 🧩 Custom Tests
+## Custom Tests
 - Grain validation for event-attendee models  
 - Business-rule tests for summary marts  
 
