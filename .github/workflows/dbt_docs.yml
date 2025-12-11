@@ -17,13 +17,8 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
-      SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
-      SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
-      SNOWFLAKE_ROLE: ${{ secrets.SNOWFLAKE_ROLE }}
-      SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
-      SNOWFLAKE_DATABASE: ${{ secrets.SNOWFLAKE_DATABASE }}
-      SNOWFLAKE_SCHEMA: ${{ secrets.SNOWFLAKE_SCHEMA }}
+      
+      PET_PROJECT_SECRETS: ${{ secrets.PET_PROJECT_SECRETS }}
 
     steps:
       - name: Checkout repo
@@ -43,18 +38,19 @@ jobs:
         run: |
           mkdir -p ~/.dbt
           cat > ~/.dbt/profiles.yml << 'EOF'
+          {% set s = fromjson(env_var('PET_PROJECT_SECRETS')) %}
           google_calendar_project:
             target: prod
             outputs:
               prod:
                 type: snowflake
-                account: "{{ env_var('SNOWFLAKE_ACCOUNT') }}"
-                user: "{{ env_var('SNOWFLAKE_USER') }}"
-                password: "{{ env_var('SNOWFLAKE_PASSWORD') }}"
-                role: "{{ env_var('SNOWFLAKE_ROLE') }}"
-                database: "{{ env_var('SNOWFLAKE_DATABASE') }}"
-                warehouse: "{{ env_var('SNOWFLAKE_WAREHOUSE') }}"
-                schema: "{{ env_var('SNOWFLAKE_SCHEMA') }}"
+                account: "{{ s['SNOWFLAKE_ACCOUNT'] }}"
+                user: "{{ s['SNOWFLAKE_USER'] }}"
+                password: "{{ s['SNOWFLAKE_PASSWORD'] }}"
+                role: "{{ s['SNOWFLAKE_ROLE'] }}"
+                database: "{{ s['SNOWFLAKE_DATABASE'] }}"
+                warehouse: "{{ s['SNOWFLAKE_WAREHOUSE'] }}"
+                schema: "{{ s['SNOWFLAKE_SCHEMA'] }}"
                 threads: 4
                 client_session_keep_alive: false
           EOF
