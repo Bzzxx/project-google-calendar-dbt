@@ -43,6 +43,7 @@ The pipeline extracts raw events & attendee metadata and turns them into insight
 - Calendar usage patterns  
 - Event-level analytical mart for reporting  
 
+[Project artifacts](/artifacts.md)
 ---
 
 ## 📊 Dataset
