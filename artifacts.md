@@ -60,10 +60,12 @@ Generated documentation and lineage graphs
 ---
 
 # Key Commands
-bashdbt run              # Run all models
-dbt test             # Run data tests
-dbt docs generate    # Generate documentation
-dbt docs serve       # View documentation
+
+- `dbt run`      # Run all models
+- `dbt test`         # Run data tests
+- `dbt docs generate `        # Generate documentation
+- `dbt docs serve`        # View documentation
+  
 
 ---
 
