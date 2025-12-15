@@ -37,7 +37,7 @@
        width="85%">
 </p>
 
-# Created three-layer dbt architecture:
+# 5. Created three-layer dbt architecture:
 
 - Staging: Raw source data models
 - Intermediate: Business logic transformations
@@ -50,7 +50,7 @@
        width="85%">
 </p>
 
-- Generated documentation and lineage graphs
+# 6. Generated documentation and lineage graphs
 
 <p align="center">
   <img src=".github/assets/lineage_graph_DB.png"
@@ -58,7 +58,7 @@
        width="85%">
 </p>
 
-# Serving in Snowflake Dashboard
+# 7. Serving in Snowflake Dashboard
 
 <p align="center">
   <img src=".github/assets/Snow_dash.png"
