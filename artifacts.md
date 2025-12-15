@@ -11,6 +11,12 @@
 - Created Snowflake account with user, role, and warehouse
 - Granted necessary access permissions
 
+<p align="center">
+  <img src=".github/assets/Snowflake_DB_view"
+       alt="Snowflake_DB_view"
+       width="85%">
+</p>
+
 ---
 
 # 3. Ingestion
@@ -39,14 +45,14 @@
 
 - Created three-layer dbt architecture:
 
-- **Staging: Raw source data models
-- **Intermediate: Business logic transformations
-- **Marts: Final analytical models
+**Staging: Raw source data models
+**Intermediate: Business logic transformations
+**Marts: Final analytical models
 
 ---
 
 - Implemented data quality tests with dbt test
-- 
+  
 <p align="center">
   <img src=".github/assets/console_log.png"
        alt="console_log_tests"
@@ -63,19 +69,6 @@
 
 ---
 
-# Project Structure
-
-```text
-├── models/
-│   ├── staging/
-│   ├── intermediate/
-│   └── marts/
-├── tests/
-└── dbt_project.yml
-```
-
----
-
 # Key Commands
 
 - `dbt run`      # Run all models
@@ -88,6 +81,12 @@
 
 # Results
 Automated pipeline that syncs Google Calendar data, transforms it into analytics-ready models, and maintains data quality through automated testing.
+
+<p align="center">
+  <img src=".github/assets/github_history.png"
+       alt="github_history"
+       width="85%">
+</p>
 
 ---
 
