@@ -11,20 +11,18 @@
 - Created Snowflake account with user, role, and warehouse
 - Granted necessary access permissions
 
-<p align="center">
-  <img src=".github/assets/Fiv_con.png"
-       alt="Fivetran_connection"
-       width="85%">
-</p>
-
-
 ---
 
 # 3. Ingestion
 
 - Configured Google Calendar connector in Fivetran
 - Established automated sync to Snowflake (every 6 hours)
-
+  
+<p align="center">
+  <img src=".github/assets/Fiv_con.png"
+       alt="Fivetran_connection"
+       width="85%">
+</p>
 
 ---
 
@@ -32,6 +30,13 @@
 
 - Installed dbt Core and initialized project
 - Configured Snowflake connection in profiles.yml
+
+  <p align="center">
+  <img src=".github/assets/console_log_2.png"
+       alt="console_log_profiles.yml"
+       width="85%">
+</p>
+
 - Created three-layer dbt architecture:
 
 - **Staging: Raw source data models
@@ -40,9 +45,21 @@
 
 ---
 
-Implemented data quality tests with dbt test
-Generated documentation and lineage graphs
+- Implemented data quality tests with dbt test
+- 
+<p align="center">
+  <img src=".github/assets/console_log.png"
+       alt="console_log_tests"
+       width="85%">
+</p>
 
+- Generated documentation and lineage graphs
+
+<p align="center">
+  <img src=".github/assets/lineage_graph_DB.png"
+       alt="Lineage_graph_Database"
+       width="85%">
+</p>
 
 ---
 
