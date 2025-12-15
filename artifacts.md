@@ -43,11 +43,11 @@
        width="85%">
 </p>
 
-- Created three-layer dbt architecture:
+# Created three-layer dbt architecture:
 
-- **Staging: Raw source data models
-- **Intermediate: Business logic transformations
-- **Marts: Final analytical models
+- Staging: Raw source data models
+- Intermediate: Business logic transformations
+- Marts: Final analytical models
 
 ---
 
@@ -69,6 +69,16 @@
 
 ---
 
+# Serving in Snowflake Dashboard
+
+<p align="center">
+  <img src=".github/assets/Snow_dash.png"
+       alt="Snowflake_dashboard.png"
+       width="85%">
+</p
+
+  ---
+  
 # Key Commands
 
 - `dbt run`      # Run all models
