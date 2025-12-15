@@ -4,8 +4,6 @@
 
 - Registered Fivetran account and connected Snowflake as destination
 
----
-
 # 2. Storage
 
 - Created Snowflake account with user, role, and warehouse
@@ -17,8 +15,6 @@
        width="85%">
 </p>
 
----
-
 # 3. Ingestion
 
 - Configured Google Calendar connector in Fivetran
@@ -29,8 +25,6 @@
        alt="Fivetran_connection"
        width="85%">
 </p>
-
----
 
 # 4. Transformation
 
@@ -48,9 +42,6 @@
 - Staging: Raw source data models
 - Intermediate: Business logic transformations
 - Marts: Final analytical models
-
----
-
 - Implemented data quality tests with dbt test
   
 <p align="center">
@@ -67,8 +58,6 @@
        width="85%">
 </p>
 
----
-
 # Serving in Snowflake Dashboard
 
 <p align="center">
@@ -76,8 +65,6 @@
        alt="Snowflake_dashboard.png"
        width="85%">
 </p
-
-  ---
   
 # Key Commands
 
@@ -86,7 +73,6 @@
 - `dbt docs generate `        # Generate documentation
 - `dbt docs serve`        # View documentation
   
-
 ---
 
 # Results
