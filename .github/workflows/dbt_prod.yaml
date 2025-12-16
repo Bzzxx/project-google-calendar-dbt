@@ -2,8 +2,6 @@ name: dbt prod build
 
 on:
   workflow_dispatch:    # запуск руками з вкладки Actions
-  schedule:
-    - cron: "0 4 * * *"   # опційно: щодня о 04:00 UTC
 
 jobs:
   dbt-build:
