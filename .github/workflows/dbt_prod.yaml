@@ -1,7 +1,7 @@
 name: dbt prod build
 
 on:
-  workflow_dispatch:    # запуск руками з вкладки Actions
+  workflow_dispatch:   
 
 jobs:
   dbt-build:
