@@ -9,9 +9,7 @@ with base as (
         ATTENDEE_EMAIL
     from {{ ref('int_events_with_attendees') }}
     where
-        -- беремо тільки події, які вже настали або сьогодні
         EVENT_START_AT <= current_date()
-        -- і тільки з 2024 року (можеш змінити дату за бажанням)
         and EVENT_START_AT >= to_date('2024-01-01')
 ),
 
