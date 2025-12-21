@@ -21,7 +21,6 @@ This diagram shows the full analytics pipeline:
 - **Snowflake** — cloud data warehouse (raw + staging + analytics schemas)  
 - **dbt Core** — transformations (staging → intermediate → marts), tests, documentation  
 - **GitHub Actions** — CI/CD orchestration for scheduled dbt runs  
-- **Power BI** — consuming marts as a BI / reporting layer
 
 ---
 
@@ -142,9 +141,8 @@ publishing analytics marts.
 ---
 
 ## 📌 Roadmap
-- Incremental history for events & attendees  
-- dbt snapshots for attendee status evolution  
-- Visualization dashboards (Tableau / PowerBI)  
+- Incremental history for events & attendees   
+- Visualization dashboards in Snowflake  
 - Automated anomaly-detection alerts in the pipeline  
 
 ## 🎯 Vision
@@ -154,7 +152,8 @@ Build a scalable, production-grade analytics ecosystem around Google Calendar da
 
 ## 📊 Project Status
 
-Current operational state of the pipeline.
+- CI workflow history was cleaned up after stabilizing the pipeline.
+- The workflow is kept as a reproducible, manual-run portfolio artifact.
 
 ## 🔍 Indicators
 | Component | Status |
@@ -167,6 +166,3 @@ Current operational state of the pipeline.
 All core components (Snowflake, dbt, CI/CD automation) are stable, functional,
 and running in production mode.
 
-Important:
-- CI workflow history was cleaned up after stabilizing the pipeline.
-- The workflow is kept as a reproducible, manual-run portfolio artifact.
