@@ -167,4 +167,6 @@ Current operational state of the pipeline.
 All core components (Snowflake, dbt, CI/CD automation) are stable, functional,
 and running in production mode.
 
-
+Important:
+- CI workflow history was cleaned up after stabilizing the pipeline.
+- The workflow is kept as a reproducible, manual-run portfolio artifact.
