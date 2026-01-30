@@ -153,12 +153,5 @@ Build a scalable, production-grade analytics ecosystem around Google Calendar da
 ## Project Status
 
 - CI workflow history was cleaned up after stabilizing the pipeline.
-- The workflow is kept as a reproducible, manual-run portfolio artifact.
-
-## Indicators
-| Component | Status |
-|----------|--------|
-| Snowflake connection | 🟢 Operational |
-| dbt model builds | 🟢 Passing |
-| GitHub Actions automation | 🟢 Enabled |
+- The workflow is kept as a reproducible, manual-run portfolio artifact.|
 
