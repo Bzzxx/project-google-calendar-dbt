@@ -6,7 +6,7 @@ for reporting, automation, and trend analysis.
 
 ---
 
-## 🖼 Architecture Overview
+## Architecture Overview
 
 <p align="center">
   <img src=".github/assets/dbt_snowflake_pipeline.png"
@@ -24,7 +24,7 @@ This diagram shows the full analytics pipeline:
 
 ---
 
-## 🌟 Project Overview
+## Project Overview
 
 This project demonstrates a **production-ready data transformation workflow**, including:
 
@@ -45,7 +45,7 @@ The pipeline extracts raw events & attendee metadata and turns them into insight
 [Project artifacts](/artifacts.md)
 ---
 
-## 📊 Dataset
+## Dataset
 
 The project uses exported data from the **Google Calendar API**, loaded into Snowflake via external tools.
 
@@ -62,7 +62,7 @@ Contains metadata about user's calendars (name, color, visibility).
 
 ---
 
-## 🧱 Project Structure (dbt)
+## Project Structure (dbt)
 
 ```text
 google_calendar_project/
@@ -91,12 +91,12 @@ google_calendar_project/
 ```
 ---
 
-## ⚙️ CI/CD Overview
+## CI/CD Overview
 
 Automated CI/CD process powered by **GitHub Actions**, used to run dbt transformations,
 validate data quality, and deploy analytics models to **Snowflake** on a daily schedule.
 
-## 🔁 Workflow Summary
+## Workflow Summary
 - Installs dbt runtime and dependencies  
 - Generates `profiles.yml` securely using GitHub Secrets  
 - Runs `dbt deps`  
@@ -104,20 +104,20 @@ validate data quality, and deploy analytics models to **Snowflake** on a daily s
 - Publishes transformed datasets to Snowflake  
 - Ensures reliability, observability, and automation across all pipeline layers  
 
-## ⏱️ Schedule
+## Schedule
 | Trigger | Value |
 |--------|--------|
 | Manual trigger | ✔️ |
 | Daily cron | `0 4 * * *` (04:00 UTC) |
 
-## 🎯 Purpose
+## Purpose
 Ensures consistent data freshness, test validation, and production-ready
 automation for the analytics workflow.
 
 ---
 
 
-## 🧪 Data Tests
+## Data Tests
 
 The project uses **dbt native tests** and **custom logic** to ensure data consistency across staging,
 intermediate layers, and marts.
@@ -131,38 +131,34 @@ intermediate layers, and marts.
 - Grain validation for event-attendee models  
 - Business-rule tests for summary marts  
 
-## 📁 Location
+## Location
 ``models/marts/schema.yml``
 
-## 🎯 Purpose
+## Purpose
 Guarantees correctness and reliability of every transformed dataset before
 publishing analytics marts.
 
 ---
 
-## 📌 Roadmap
+## Roadmap
 - Incremental history for events & attendees   
 - Visualization dashboards in Snowflake  
 - Automated anomaly-detection alerts in the pipeline  
 
-## 🎯 Vision
+## Vision
 Build a scalable, production-grade analytics ecosystem around Google Calendar data.
 
 ---
 
-## 📊 Project Status
+## Project Status
 
 - CI workflow history was cleaned up after stabilizing the pipeline.
 - The workflow is kept as a reproducible, manual-run portfolio artifact.
 
-## 🔍 Indicators
+## Indicators
 | Component | Status |
 |----------|--------|
 | Snowflake connection | 🟢 Operational |
 | dbt model builds | 🟢 Passing |
 | GitHub Actions automation | 🟢 Enabled |
-
-## 🏁 Summary
-All core components (Snowflake, dbt, CI/CD automation) are stable, functional,
-and running in production mode.
 
